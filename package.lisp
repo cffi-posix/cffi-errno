@@ -2,6 +2,7 @@
 (in-package :common-lisp)
 
 (defpackage :cffi-errno
+  (:nicknames :errno)
   (:use :common-lisp :cffi)
   (:export
    #:errno
