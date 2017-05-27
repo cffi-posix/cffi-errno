@@ -6,7 +6,11 @@
 
 (in-package :cffi-errno.system)
 
-(defsystem "cffi-errno"
+(defsystem :cffi-errno
+  :name "cffi-errno"
+  :author "Thomas de Grivel <thoxdg@gmail.com>"
+  :version "0.1"
+  :description "Common Lisp wrapper for Unix error codes"
   :defsystem-depends-on ("cffi-grovel")
   :depends-on ("cffi")
   :components
