@@ -24,5 +24,21 @@
 (defun strerror (errnum)
   (c-strerror errnum))
 
-(defun error-errno (msg)
-  (error "~A: ~D ~A" msg errno (strerror errno)))
+(define-condition errno-error (error)
+  ((message :initarg :message
+            :reader errno-error-message)
+   (errno :initarg :errno
+          :reader errno-error-errno)
+   (strerror :initarg :strerror
+             :reader errno-error-strerror))
+  (:report (lambda (condition stream)
+             (format stream "~A: ~D ~A"
+                     (errno-error-message condition)
+                     (errno-error-errno condition)
+                     (errno-error-strerror condition)))))
+
+(defun error-errno (message)
+  (error 'errno-error
+         :message message
+         :errno errno
+         :strerror (strerror errno)))

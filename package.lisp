@@ -23,6 +23,10 @@
   (:use :common-lisp :cffi)
   (:export
    #:errno
+   #:errno-error
+   #:errno-error-errno
+   #:errno-error-message
+   #:errno-error-strerror
    #:error-errno
    #:strerror
    #:+eperm+
